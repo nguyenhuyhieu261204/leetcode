@@ -18,7 +18,7 @@ int maxProfitV1(const vector<int>& prices) {
     int n = prices.size();
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
-            ans = max(ans, prices[j] - prices[i]);  
+            ans = max(ans, prices[j] - prices[i]);
         }
     }
     return ans;
@@ -30,7 +30,7 @@ int maxProfitV1(const vector<int>& prices) {
  * This is a better solution with O(n) time complexity.
  * @param prices Reference to the vector of stock prices
  * @return Maximum profit achievable
- * 
+ *
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */
@@ -49,18 +49,18 @@ int maxProfitV2(const vector<int>& prices) {
  * This is the solution that better than V1 using dynamic programming concept.
  * @param prices Reference to the vector of stock prices
  * @return Maximum profit achievable
- * 
- * Time Complexity: O(1)
+ *
+ * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
 int maxProfitV3(const vector<int>& prices) {
     int n = prices.size();
-    if (n == 0) return;
+    if (n == 0) return 0;
     vector<int> dp(n, 0);
-    int minPrices = prices[0];
+    int minPrice = prices[0];
     for (int i = 1; i < n; ++i) {
-        minPrices = min(minPrices, prices[i]);
-        dp[i] = min(dp[i - 1], prices[i] - minPrices);
+        minPrice = min(minPrice, prices[i]);
+        dp[i] = max(dp[i - 1], prices[i] - minPrice);
     }
     return dp[n - 1];
 }
