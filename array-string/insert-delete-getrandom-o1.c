@@ -102,3 +102,31 @@ void randomizedSetFree(RandomizedSet* obj) {
  
  * randomizedSetFree(obj);
 */
+
+int main() {
+    srand(time(NULL));
+
+    RandomizedSet* rs = randomizedSetCreate();
+
+    printf("Insert 1: %s\n", randomizedSetInsert(rs, 1) ? "true" : "false");
+    printf("Insert 2: %s\n", randomizedSetInsert(rs, 2) ? "true" : "false");
+    printf("Insert 3: %s\n", randomizedSetInsert(rs, 3) ? "true" : "false");
+    printf("Insert 2 again: %s\n", randomizedSetInsert(rs, 2) ? "true" : "false");
+    printf("Remove 2: %s\n", randomizedSetRemove(rs, 2) ? "true" : "false");
+    printf("Remove 2 again: %s\n", randomizedSetRemove(rs, 2) ? "true" : "false");
+    printf("Insert 2 again: %s\n", randomizedSetInsert(rs, 2) ? "true" : "false");
+    printf("\nCurrent elements (%d): ", rs->cur);
+    for (int i = 0; i < rs->cur; i++) {
+        printf("%d ", rs->arr[i]);
+    }
+    printf("\n");
+
+    printf("\nGetRandom results:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", randomizedSetGetRandom(rs));
+    }
+    printf("\n");
+
+    randomizedSetFree(rs);
+    return 0;
+}
