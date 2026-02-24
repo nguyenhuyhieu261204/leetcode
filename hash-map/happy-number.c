@@ -18,10 +18,10 @@ bool isHappy(int n)
 
     while (n != 1)
     {
+        n = sumOfSquares(n);
         if (visited[n])
             return false;
         visited[n] = true;
-        n = sumOfSquares(n);
     }
 
     return true;
